@@ -64,4 +64,31 @@ void loop()
         connectServer();
     }
     client.loop();
+
+    long now = millis();
+    if(now - last_msg > 2000){
+        last_msg = now;
+        
+        // Send data to MQTT server
+        const int sensor_value = 1;
+        const int battery_level = 1;
+
+        String  json = "{";
+                json += "\"sensor_id\":\""+(String(device_id))+"\",";
+                json += "\"sensor_value\":"+(String(sensor_value))+String(",");
+                json += "\"battery_level\":"+(String(battery_level))+String(",");
+                json += "}";
+        
+        char data[json.length()+1];
+        json.toCharArray(data, json.length()+1);
+
+        if(client.publish(publisher_topic, data)){
+            Serial.println("Message has been sent to MQTT server");
+            Serial.println("data:");
+            Serial.println(data);
+            Serial.println("json:");
+            Serial.println(json);
+        }
+        
+    }
 }
