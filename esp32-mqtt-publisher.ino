@@ -8,7 +8,9 @@ const char* pass = "WIFI PASSWORD";
 // MQTT Broker 
 const char* mqtt_server = "192.168.1.50";
 const int mqtt_port = 1883;
-const char* subscribe_topic = "test";
+const char* subscriber_topic = "test/server_data";
+const char* publisher_topic = "test/sensor_data";
+long last_msg = 0;
 
 const char* device_id = "esp32-client";
 
