@@ -84,10 +84,7 @@ void loop()
 
         if(client.publish(publisher_topic, data)){
             Serial.println("Message has been sent to MQTT server");
-            Serial.println("data:");
             Serial.println(data);
-            Serial.println("json:");
-            Serial.println(json);
         }
         
     }
