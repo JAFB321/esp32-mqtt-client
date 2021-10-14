@@ -40,15 +40,16 @@ void setup()
 
 void connectServer(){
 
+    Serial.println("Connecting to MQTT server...");
     while(!client.connected()){
-        Serial.println("Connecting to MQTT server...");
 
         if(client.connect(device_id)){
-            client.subscribe(subscribe_topic);
+            // client.subscribe(subscriber_topic);
         }
 
         delay(500);
-        Serial.print(".");
+        Serial.println(client.state());
+        Serial.print("....");
     }
     Serial.println("Connected to MQTT server!");
 }
